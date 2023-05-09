@@ -15,16 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+        $this->call(UserTableSeeder::class);
 
-        foreach (range(1, 50) as $index) {
-            User::create([
-                'uuid' => $faker->uuid,
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'email' => $faker->unique()->safeEmail,
-                'password' => bcrypt('1345678'),
-            ]);
-        }
+        $this->call(StudentsTableSeeder::class);
     }
 }
