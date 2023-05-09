@@ -17,11 +17,20 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'users';
+    protected $primaryKey = 'uuid';
+
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'uuid', 'first_name', 'last_name', 'email',
     ];
+
+
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 
     /**
      * The attributes that should be hidden for serialization.
